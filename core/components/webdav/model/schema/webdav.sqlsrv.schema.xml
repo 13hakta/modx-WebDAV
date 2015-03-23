@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="webdav" baseClass="xPDOObject" platform="sqlsrv" phpdoc-package="webdav" phpdoc-subpackage="" version="1.1">
+
+	<object class="WebDAVMediaSource" extends="modMediaSource">
+	</object>
+</model>
