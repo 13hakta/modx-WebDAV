@@ -43,3 +43,9 @@ Tested with SabreDAV, CloudMe.com, Yandex Disk.
 | Name     | Description                 |
 | -------- | --------------------------- |
 | **load** | Ability to download objects |
+
+## Proxy
+
+If WebDAV server doesn't allow direct access to download files you may wish to use proxy processor.
+URL is made up with: `http://yoursite.ru/assets/components/webdav/index.php?ctx=web&action=proxy&source=SOURCEID&src=path/file.ext`
+As you see it accepts sourceID and file path, but it locked to be used only with WebDAV sources.
