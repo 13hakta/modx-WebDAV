@@ -499,8 +499,8 @@ class WebDAV_Client {
 	}
 
 	// Prepare headers
-	if (empty($header['Content-Type']))
-	    $header['Content-Type'] = 'application/octet-stream';
+	if (empty($headers['Content-Type']))
+	    $headers['Content-Type'] = 'application/octet-stream';
 
 	$this->_headers = array();
 	$req_header = array();
