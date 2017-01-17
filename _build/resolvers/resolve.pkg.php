@@ -6,7 +6,7 @@ if ($object->xpdo) {
 
 	switch ($options[xPDOTransport::PACKAGE_ACTION]) {
 		case xPDOTransport::ACTION_INSTALL:
-			$modelPath = $modx->getOption('webdav.core_path', null, $modx->getOption('core_path') . 'components/webdav/') . 'model/';
+			$modelPath = $modx->getOption('webdav.core_path', null, '[[++core_path]]components/webdav/') . 'model/';
 
 			$modx->addPackage('webdav', $modelPath);
         		$modx->addExtensionPackage('webdav', $modelPath);
