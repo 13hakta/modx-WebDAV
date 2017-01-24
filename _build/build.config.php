@@ -8,18 +8,22 @@ define('PKG_VERSION', '1.0.0');
 define('PKG_RELEASE', 'beta');
 define('PKG_AUTO_INSTALL', true);
 define('PKG_NAMESPACE_PATH', '{core_path}components/' . PKG_NAME_LOWER . '/');
+define('PKG_ASSETS_PATH', '{assets_path}components/' . PKG_NAME_LOWER . '/');
 
 /* define paths */
 if (isset($_SERVER['MODX_BASE_PATH'])) {
 	define('MODX_BASE_PATH', $_SERVER['MODX_BASE_PATH']);
 }
-elseif (file_exists(dirname(dirname(dirname(__FILE__))) . '/core')) {
+elseif (file_exists(dirname(dirname(dirname(__FILE__))) . '/connectors')) {
 	define('MODX_BASE_PATH', dirname(dirname(dirname(__FILE__))) . '/');
 }
 else {
 	define('MODX_BASE_PATH', dirname(dirname(dirname(dirname(__FILE__)))) . '/');
 }
-define('MODX_CORE_PATH', MODX_BASE_PATH . 'core/');
+
+/* use config from installed MODx */
+require MODX_BASE_PATH . 'config.core.php';
+
 define('MODX_MANAGER_PATH', MODX_BASE_PATH . 'manager/');
 define('MODX_CONNECTORS_PATH', MODX_BASE_PATH . 'connectors/');
 define('MODX_ASSETS_PATH', MODX_BASE_PATH . 'assets/');
