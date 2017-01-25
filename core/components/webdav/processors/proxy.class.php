@@ -22,60 +22,60 @@
 */
 
 class MediaProxyProcessor extends modObjectGetProcessor {
-    /** @var modMediaSource|modWebDAVMediaSource $source */
-    public $source;
-    public $permission = 'load';
+	/** @var modMediaSource|modWebDAVMediaSource $source */
+	public $source;
+	public $permission = 'load';
 
 
-    public function initialize() {
-        $this->setDefaultProperties(array(
-            'src' => '',
-            'source' => 1,
-        ));
+	public function initialize() {
+		$this->setDefaultProperties(array(
+			'src' => '',
+			'source' => 1,
+		));
 
-        return true;
-    }
-
-
-    public function process() {
-        @session_write_close();
-
-        $src = $this->getProperty('src');
-        if (empty($src)) return $this->failure();
-
-        $this->getSource($this->getProperty('source'));
-        if (empty($this->source)) $this->failure($this->modx->lexicon('source_err_nf'));
-
-	// Prevent another media sources requests for security reasons
-	if ($this->source->getTypeName() != 'WebDAV') $this->failure($this->modx->lexicon('source_err_nfs'));
-
-	$body = $this->source->getObjectContents($src);
-	if (empty($body)) $this->failure($this->modx->lexicon('file_err_nf'));
-
-	header('Content-Type: ' . $body['mime']);
-	echo $body['content'];
-    }
+		return true;
+	}
 
 
-    /**
-     * Get the source to load the paths from
-     * 
-     * @param int $sourceId
-     * @return modMediaSource|modFileMediaSource
-     */
-    public function getSource($sourceId) {
-        /** @var modMediaSource|modWebDAVMediaSource $source */
-        $this->modx->loadClass('sources.modMediaSource');
-        $this->source = modMediaSource::getDefaultSource($this->modx, $sourceId, false);
-        if (empty($this->source)) return false;
+	public function process() {
+		@session_write_close();
 
-        if (!$this->source->getWorkingContext()) {
-            return false;
-        }
-        $this->source->setRequestProperties($this->getProperties());
-        $this->source->initialize();
-        return $this->source;
-    }
+		$src = $this->getProperty('src');
+		if (empty($src)) return $this->failure();
+
+		$this->getSource($this->getProperty('source'));
+		if (empty($this->source)) $this->failure($this->modx->lexicon('source_err_nf'));
+
+		// Prevent another media sources requests for security reasons
+		if ($this->source->getTypeName() != 'WebDAV') $this->failure($this->modx->lexicon('source_err_nfs'));
+
+		$body = $this->source->getObjectContents($src);
+		if (empty($body)) $this->failure($this->modx->lexicon('file_err_nf'));
+
+		header('Content-Type: ' . $body['mime']);
+		echo $body['content'];
+	}
+
+
+	/**
+	 * Get the source to load the paths from
+	 *
+	 * @param int $sourceId
+	 * @return modMediaSource|modFileMediaSource
+	 */
+	public function getSource($sourceId) {
+		/** @var modMediaSource|modWebDAVMediaSource $source */
+		$this->modx->loadClass('sources.modMediaSource');
+		$this->source = modMediaSource::getDefaultSource($this->modx, $sourceId, false);
+		if (empty($this->source)) return false;
+
+		if (!$this->source->getWorkingContext()) {
+			return false;
+		}
+		$this->source->setRequestProperties($this->getProperties());
+		$this->source->initialize();
+		return $this->source;
+	}
 }
 
 return 'MediaProxyProcessor';
