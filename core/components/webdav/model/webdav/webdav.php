@@ -43,14 +43,14 @@ class WebDAV_Client {
 	 * @var	array
 	 */
 	private $connection = array(
-		'uri'	  => false, // The http or https resource URL 
+		'uri'	=> false, // The http or https resource URL 
 		'proxy'	=> false, // Proxy url
-		'user'	 => false, // User name for authentication
-		'password' => false, // Password for authentication
-		'auth'	 => false, // Authorization method
-		'ssl'	  => true,  // Check SSL certificate
-		'path'	 => '/',   // Root for operations
-		'ua'	   => 'PHP DAV lib' // User agent
+		'user'	=> false, // User name for authentication
+		'password'	=> false, // Password for authentication
+		'auth'	=> false, // Authorization method
+		'ssl'	=> true,  // Check SSL certificate
+		'path'	=> '/',   // Root for operations
+		'ua'	=> 'PHP DAV lib' // User agent
 	);
 
 	/**
